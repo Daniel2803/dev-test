@@ -1,0 +1,70 @@
+:root {
+    --font-main: "Quicksand", sans-serif;
+
+    --size-h1: 45px;
+    --size-h2: 36px;
+    --size-h3: 24px;
+    --size-p: 18px;
+
+    --colour-primary: #DE6C17;
+    --colour-secondary: #FF6D00;
+    --colour-white: #FFF;
+    --colour-black: #000;
+    --colour-grey: ##36413C;
+    --colour-light-grey: ##5E6E66;
+
+    --transition: all 0.3s ease;
+}
+
+h1,h2,h3 {
+    font-family: var(--font-main);
+    color: inherit;
+}
+p {
+    font-family: var(--font-main);
+    font-weight: 400;
+    color: inherit;
+}
+html {
+    font-size: var(--size-p);
+    font-family: var(--font-main);
+}
+
+/* Button */
+.button {
+    padding: 12px 33px;
+    position: relative;
+    font-size: var(--size-p);
+    color: var(--colour-white);
+    position: relative;
+    text-decoration: none;
+    background: unset !important;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    font-weight: 800;
+    font-size: var(--size-2);
+    font-family: var(--font-main);
+    width: fit-content;
+}
+.button::before {
+    content: "";
+    border-radius: 4px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: var(--colour-primary);
+    transition: var(--transition);
+    z-index: -1;
+}
+.button:hover::before {
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    transition: var(--transition);
+    background-color: var(--colour-secondary);
+}
