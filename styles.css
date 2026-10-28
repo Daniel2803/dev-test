@@ -1,6 +1,10 @@
 :root {
     --font-main: "Quicksand", sans-serif;
 
+    --max-width-sm: 1002px;
+    --max-width-md: 1200px;
+    --row-width: calc(100% - (480px / 2));
+
     --size-h1: 45px;
     --size-h2: 36px;
     --size-h3: 24px;
@@ -10,20 +14,43 @@
     --colour-secondary: #FF6D00;
     --colour-white: #FFF;
     --colour-black: #000;
-    --colour-grey: ##36413C;
-    --colour-light-grey: ##5E6E66;
+    --colour-grey: #36413C;
+    --colour-light-grey: #5E6E66;
 
     --transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 726px) {
+    :root {
+         --row-width: calc(100% - (240px / 2));
+    }
+}
+@media screen and (max-width: 375px) {
+    :root {
+         --row-width: calc(100% - (120px / 2));
+    }
 }
 
 h1,h2,h3 {
     font-family: var(--font-main);
     color: inherit;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+h1 {
+    font-size: var(--size-h1);
+}
+h2 {
+    font-size: var(--size-h2);
+}
+h3 {
+    font-size: var(--size-h3);
 }
 p {
     font-family: var(--font-main);
     font-weight: 400;
     color: inherit;
+    line-height: 1.5;
 }
 html {
     font-size: var(--size-p);
@@ -67,4 +94,146 @@ html {
     bottom: -2px;
     transition: var(--transition);
     background-color: var(--colour-secondary);
+}
+
+.button-clear {
+    color: var(--colour-primary);
+    text-decoration: none;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.button-clear::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: relative;
+    display: flex;
+    background-color: currentColor;
+    mask: url("assets/chevron-right-solid-full.svg") no-repeat center / contain;
+    transition: var(--transition);
+}
+.button-clear:hover::after {
+    transform: translateX(2px);
+    transition: var(--transition);
+}
+
+.pb-section {
+    padding: 60px 0;
+}
+
+/* Banner */
+.section-banner {
+    position: relative;
+    min-height: 600px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px !important;
+}
+.section-banner::after {
+    content: '';
+    background-image: url("/assets/banner-wave.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 62px;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+}
+.section-banner .pb-row {
+    max-width: var(--max-width-sm);
+    width: var(--row-width);
+    margin: 0 auto;
+}
+.section-banner .pb-row:has(img) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    max-width: 100%;
+}
+.section-banner .pb-row:has(img) img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    max-height: 600px;
+}
+.section-banner .pb-row:has(img) .pb-column,
+.section-banner .pb-row:has(img) .pb-image {
+    height: 100%;
+}
+.section-banner .pb-row:has(img)::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,.5) 40%, transparent 100%);
+    z-index: 0;
+}
+.section-banner .pb-text * {
+    color: var(--colour-white);
+}
+.section-banner .pb-text {
+    max-width: 450px;
+}
+.section-banner .pb-text p {
+    margin-top: 0px;
+}
+
+@media screen and (max-width:1024px) {
+    
+}
+
+/* Services */
+.section-services {
+    display: flex;
+    flex-direction: column;
+    row-gap: 80px;
+}
+.section-services .pb-row {
+    max-width: var(--max-width-md);
+    width: var(--row-width);
+    margin: 0 auto;
+}
+.section-services .pb-row:has(h2) .pb-text {
+    max-width: 690px;
+    margin: 0 auto;
+    text-align: center;
+}
+.section-services .pb-row:has(h3) {
+    display: flex;
+    column-gap: 30px;
+}
+.section-services .pb-row:has(h3) .pb-column {
+    flex: 1 1 33%;
+    max-width: calc(33% - 20px);
+    box-shadow: 0 3px 10px rgba(0,0,0,.2);
+    border-radius: 16px;
+}
+.section-services img {
+    border-radius: 16px 16px 0px 0px;
+    width: 100%;
+    object-fit: cover;
+}
+.section-services .pb-row:has(h3) .pb-text {
+    padding: 24px 20px;
+}
+.section-services .pb-row:has(h3) .pb-text p {
+    color: var(--colour-light-grey);
+}
+
+@media screen and (max-width: 726px) {
+    .section-services .pb-row {
+        width: calc(100% - (120px / 2));
+    }
 }
